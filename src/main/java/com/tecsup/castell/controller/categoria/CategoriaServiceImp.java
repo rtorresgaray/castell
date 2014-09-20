@@ -1,4 +1,4 @@
-package com.tecsup.castell.controller.campain;
+package com.tecsup.castell.controller.categoria;
 
 import com.tecsup.castell.dao.CategoriaDAO;
 import com.tecsup.castell.model.Categoria;

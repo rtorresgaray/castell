@@ -25,4 +25,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     
+    <task:annotation-driven/>
+    
 </beans>

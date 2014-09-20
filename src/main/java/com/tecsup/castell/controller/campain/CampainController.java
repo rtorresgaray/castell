@@ -1,5 +1,7 @@
 package com.tecsup.castell.controller.campain;
 
+import com.tecsup.castell.controller.categoria.*;
+import com.tecsup.castell.model.Campain;
 import com.tecsup.castell.model.Categoria;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,48 +15,56 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes("categoria")
-@RequestMapping("categoria")
-public class CategoriaController {
+@SessionAttributes("campain")
+@RequestMapping("campain")
+public class CampainController {
 
+   
     @Autowired
-    CategoriaService service;
+    CampainService service;
 
     @RequestMapping(method = RequestMethod.GET)
+    //porque le voy a devolver un listado uso model
     public String index(Model model) {
 
-        model.addAttribute("categorias", service.all());
-        return "categoria/index";
+        model.addAttribute("campanias", service.all());
+        return "campain/index";
     }
 
     @RequestMapping("create")
     public String create(Model model) {
 
-        model.addAttribute("categoria", new Categoria());
-        return "categoria/formulario";
+        model.addAttribute("campain", new Campain());
+        return "campain/formulario";
     }
 
     @RequestMapping("update/{id}")
     public String update(@PathVariable("id") Long id, Model model) {
 
-        Categoria categoria = service.find(id);
-        model.addAttribute("categoria", categoria);
+        Campain campain = service.find(id);
+        if (campain==null){
+            return "redirect:/campain";
+        }
+        model.addAttribute("campain", campain);
 
-        return "categoria/formulario";
+        return "campain/formulario";
     }
 
     @RequestMapping("save")
-    public String save(@ModelAttribute Categoria categoria, Model model, BindingResult result) {
-
-        service.save(categoria);
-        return "redirect:/categoria";
+    public String save(@ModelAttribute Campain campain) {
+        try {
+        service.save(campain);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return "redirect:/campain";
     }
 
     @RequestMapping("delete/{id}")
     public String delete(@PathVariable("id") Long id) {
 
         service.delete(id);
-        return "redirect:/categoria";
+        return "redirect:/campain";
     }
 
 }

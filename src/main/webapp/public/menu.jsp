@@ -7,7 +7,7 @@
    
     <ul class="nav nav-sidebar">
         <li><a href="<%=request.getContextPath()%>/contacto">Contactos</a></li>
-        <li><a href="<%=request.getContextPath()%>/campania">Campañas</a></li>
+        <li><a href="<%=request.getContextPath()%>/campain">Campañas</a></li>
         <li><a href="<%=request.getContextPath()%>/categoria">Categorías</a></li>
     </ul>
     
